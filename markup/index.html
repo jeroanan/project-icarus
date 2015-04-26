@@ -1,0 +1,8 @@
+{% extends 'master.html' %}
+{% block content %}
+		<h1>{{title}}</h1>
+		<p>I have {{numberOfGames}} games in my database. <a href="/allgames">See all</a></p>
+		<p>I have {{numberOfHardware}} items of hardware in my database. <a href="/allhardware">See all</a></p>
+		<p>I have {{numberOfPlatforms}} platforms in my database. <a href="/allplatforms">See all</a></p>
+		<p>I have {{numberOfUsers}} users in my database. <a href="/allusers">See all</a></p>
+{% endblock %}

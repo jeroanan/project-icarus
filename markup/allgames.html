@@ -1,0 +1,48 @@
+{% extends 'master.html' %}
+{% block content %}
+<h1>{{title}}</h1>
+<table class="table table-striped">
+    <thead>
+       <tr>
+           <th><a title="Sort by game title" onclick="sortGames('title');" class="linkbutton">Title</a></th>
+           <th><a title="Sort by platform" onclick="sortGames('platform');" class="linkbutton">Platform</a></th>
+           <th>
+               <a title="Sort by number of copies" onclick="sortGames('numcopies');" class="linkbutton"># Copies</a>
+           </th>
+           <th># Boxed</th>
+           <th># Manuals</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+        <tr>
+            <td>
+                <a title="View game details" onclick="editGame('{{game.id}}')" class="linkbutton">{{game._Game__title}}</a>
+            </td>
+            <td>
+                <a title="See all games for {{game.platform}}" href="/allgames?platform={{game.platform}}">
+                    {{game._Game__platform}}
+                </a>
+            </td>
+            <td>{{game._Game__num_copies}}</td>
+            <td>{{game._Game__num_boxed}}</td>
+            <td>{{game._Game__num_manuals}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<input type="hidden" id="gamesortfield" value="{{game_sort_field}}" />
+<input type="hidden" id="gamesortdir" value="{{game_sort_dir}}" />
+<!-- <table class="table table-striped"> -->
+<!--   <thead> -->
+<!-- 	 <th>title</th> -->
+<!--   </thead> -->
+<!--   <tbody> -->
+	 
+<!-- 	 {% for g in games %} -->
+<!-- 	 <tr> -->
+<!-- 	 <td>{{g["_Game__title"]}}</td> -->
+<!-- 	 </tr> -->
+<!-- 	 {% endfor %} -->
+<!-- </table> -->
+{% endblock %}

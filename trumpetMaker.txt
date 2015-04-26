@@ -1,0 +1,6 @@
+module.exports = function(tr, items) {
+	 for (var key in items) {
+		  var s = tr.select(key).createWriteStream();
+		  s.end(items[key].toString());
+	 }
+}
