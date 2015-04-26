@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><a title="Sort by name" onclick="sortHardware('name');" class="linkbutton">Name</a></th>
+            <th><a title="Sort by platform" onclick="sortHardware('platform');" class="linkbutton">Platform</a></th>
+            <th><a title="Sort by number owned" onclick="sortHardware('numowned');" class="linkbutton"># Owned</a></th>
+            <th># Boxed</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for h in hardware %}
+        <tr>
+            <td><a title="Edit {{h._Hardware__name}}" onclick="editHardware('{{h._id}}')" class="linkbutton">{{h._Hardware__name}}</a></td>
+            <td><a title="See all hardware for {{h.platform}}" class="linkbutton">{{h._Hardware__platform}}</a></td>
+            <td>{{h._Hardware__num_owned}}</td>
+            <td>{{h._Hardware__num_boxed}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<input type="hidden" id="hwsortfield" value="{{hw_sort_field}}" />
+<input type="hidden" id="hwsortdir" value="{{hw_sort_dir}}" />
+{% endblock %}

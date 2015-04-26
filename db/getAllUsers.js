@@ -11,21 +11,8 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
 
-var swig = require('swig');
+var allItems = require('./getAllItemsFromCollection.js');
 
-var mongoconnection = require('../db/mongoConnection.js');
-var getAllGames = require('../db/getAllGames.js');
-
-module.exports = function (httpStream, request, response) {	 
-
-	 mongoconnection(mongoConnectionEstablished);	 
-
-	 function mongoConnectionEstablished(dbConn) {
-		  
-		  getAllGames(dbConn, function (data) {
-				var o = swig.renderFile('markup/allgames.html', {games: data, title: "All Games"});
-				response.end(o);
-		  });
-		  
-	 }
+module.exports = function(dbConn, callback) {
+	 allItems(dbConn, 'users', '_User__user_id', callback);	 
 }

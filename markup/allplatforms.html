@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for platform in platforms%}
+    <tr>
+      <td>
+        <a title="See all games for {{platform._Platform__description}}"
+           href="/allgames?platform={{platform._Platform__name}}">{{platform._Platform__name}}</a>
+      </td>
+      <td>{{platform._Platform__description}}</td>
+      <td><button class="btn" onclick="editPlatform('{{platform._id.toString()}}')">Edit</button></td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{% endblock %}

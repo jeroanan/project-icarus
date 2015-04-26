@@ -13,19 +13,19 @@
 
 var swig = require('swig');
 
+var getAllHardware = require('../db/getAllHardware.js');
 var mongoconnection = require('../db/mongoConnection.js');
-var getAllGames = require('../db/getAllGames.js');
 
-module.exports = function (httpStream, request, response) {	 
+module.exports = function(httpStream, request, response) {
 
 	 mongoconnection(mongoConnectionEstablished);	 
 
 	 function mongoConnectionEstablished(dbConn) {
-		  
-		  getAllGames(dbConn, function (data) {
-				var o = swig.renderFile('markup/allgames.html', {games: data, title: "All Games"});
+
+		  getAllHardware(dbConn, function(data) {
+				var o = swig.renderFile('markup/allhardware.html', {hardware: data, title: 'All Hardware'});
 				response.end(o);
 		  });
-		  
 	 }
+
 }

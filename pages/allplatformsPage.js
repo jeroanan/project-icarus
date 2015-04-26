@@ -13,19 +13,19 @@
 
 var swig = require('swig');
 
+var getAllPlatforms = require('../db/getAllPlatforms.js');
 var mongoconnection = require('../db/mongoConnection.js');
-var getAllGames = require('../db/getAllGames.js');
 
-module.exports = function (httpStream, request, response) {	 
+module.exports = function(httpStream, request, response) {
 
 	 mongoconnection(mongoConnectionEstablished);	 
 
 	 function mongoConnectionEstablished(dbConn) {
-		  
-		  getAllGames(dbConn, function (data) {
-				var o = swig.renderFile('markup/allgames.html', {games: data, title: "All Games"});
+
+		  getAllPlatforms(dbConn, function(data) {
+				var o = swig.renderFile('markup/allplatforms.html', {platforms: data, title: 'All Platforms'});
 				response.end(o);
 		  });
-		  
 	 }
+
 }
